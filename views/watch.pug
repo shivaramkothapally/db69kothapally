@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1= title
+  -
+    const watch  = [
+      {
+      'Name': "Submariner",
+      'Company': "Rolex",
+      'Price':"$2575"
+      },
+      {
+      'Name': "Flynn",
+      'Company': "Fossil",
+      'Price':"$490"
+      },
+      {
+      'Name': "Navitimer",
+      'Company': "Breitling",
+      'Price':"$26850"
+      },
+      ]
+  div(class="container-fluid mt-3")
+  div(class="row")
+    each wat,index in watch
+      div(class="col-sm-2 " onclick=`buy(${index})`) #{wat.Name} - #{wat.Company} - #{wat.Price} 
+  script.
+      function buy(itemNo)
+      {
+        alert(`You purchased Item ${itemNo+1}`)
+      }    
