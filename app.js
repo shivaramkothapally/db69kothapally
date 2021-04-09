@@ -3,12 +3,50 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const connectionString = 'mongodb+srv://kothapally:Kothapally@123@cluster0.f454r.mongodb.net/project0?retryWrites=true&w=majority'
+mongoose = require('mongoose');
+mongoose.connect(connectionString,
+{useNewUrlParser: true, useUnifiedTopology: true});
+var watch = require("./models/watch");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var watchRouter = require('./routes/watch');
 var starsRouter = require('./routes/stars');
 var smRouter = require('./routes/slot');
+var resourceRouter = require('./routes/resource');
+
+// We can seed the collection if needed on server start
+async function recreateDB(){
+  // Delete everything
+  await watch.deleteMany();
+  let instance1 = new watch({
+    Name:"Submariner",
+    Company:"Rolex",
+    Price:"$2575"});
+  instance1.save( function(err,doc) {
+  if(err) return console.error(err);
+  console.log("First object saved")
+  });
+  let instance2 = new watch({
+    Name:"Flynn",
+    Company:"Fossil",
+    Price:"$490"});
+  instance2.save( function(err,doc) {
+  if(err) return console.error(err);
+  console.log("Second object saved")
+  });
+  let instance3 = new watch({
+    Name:"Navitimer",
+    Company:"Breitling",
+    Price:"$26850"});
+  instance3.save( function(err,doc) {
+  if(err) return console.error(err);
+  console.log("Third object saved")
+  });
+  }
+  let reseed = true;
+  if (reseed) { recreateDB();}
 
 var app = express();
 
@@ -24,9 +62,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/watch', watchRouter);
+app.use('/resource/watch', watchRouter);
 app.use('/stars', starsRouter);
 app.use('/sm', smRouter);
+app.use('/resource', resourceRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,5 +82,13 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//Get the default connection
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connectionerror:'));
+db.once("open", function(){
+console.log("Connection to DB succeeded");
+})
 
 module.exports = app;

@@ -2,24 +2,7 @@ extends layout
 
 block content
   h1= title
-  -
-    const watch  = [
-      {
-      'Name': "Submariner",
-      'Company': "Rolex",
-      'Price':"$2575"
-      },
-      {
-      'Name': "Flynn",
-      'Company': "Fossil",
-      'Price':"$490"
-      },
-      {
-      'Name': "Navitimer",
-      'Company': "Breitling",
-      'Price':"$26850"
-      },
-      ]
+  - let watch=results
   div(class="container-fluid mt-3")
   div(class="row")
     each wat,index in watch
