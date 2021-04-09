@@ -13,7 +13,7 @@ exports.watch_list = async function(req, res) {
 exports.watch_detail = function(req, res) {
     console.log("detail" + req.params.id)
     try {
-        result = await car.findById(req.params.id)
+        result = await watch.findById(req.params.id)
         res.send(result)
     } catch (error) {
         res.status(500)
