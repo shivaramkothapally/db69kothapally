@@ -10,7 +10,7 @@ exports.watch_list = async function(req, res) {
     }
 };
 // for a specific Costume.
-exports.watch_detail = function(req, res) {
+exports.watch_detail = async function(req, res) {
     console.log("detail" + req.params.id)
     try {
         result = await watch.findById(req.params.id)
