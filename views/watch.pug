@@ -6,7 +6,7 @@ block content
   div(class="container-fluid mt-3")
   div(class="row")
     each wat,index in watch
-      div(class="col-sm-2 " onclick=`buy(${index})`) #{wat.Name} - #{wat.Company} - #{wat.Price} 
+      div(class="col-sm-2 " onclick=`buy(${index})`) #{wat._id} - #{wat.Name} - #{wat.Company} - #{wat.Price} 
   script.
       function buy(itemNo)
       {

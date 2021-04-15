@@ -6,3 +6,30 @@ body {
 a {
   color: #00B7FF;
 }
+
+.costumeAttr {
+  background-color: aquamarine;
+  width: 120px;
+}
+.watchLabel {
+	background-color: green;
+	width: 120px;
+}
+
+.button {
+  background-color: grey;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+h1 {
+	background-color: yellow;
+	display: inline-block;
+}

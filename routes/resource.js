@@ -17,4 +17,12 @@ router.put('/watch/:id', watch_controller.watch_update_put);
 router.get('/watch/:id', watch_controller.watch_detail);
 // GET request for list of all Costume items.
 router.get('/watch', watch_controller.watch_list);
+/* GET detail costume page */
+router.get('/detail', watch_controller.watch_view_one_Page);
+/* GET create costume page */
+router.get('/create', watch_controller.watch_create_Page);
+/* GET create update page */
+router.get('/update', watch_controller.watch_update_Page);
+/* GET create costume page */
+router.get('/delete', watch_controller.watch_delete_Page);
 module.exports = router;

@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+
+  - let watchid = toShow._id
+  - let watchtype = toShow.Name
+  - let watchcost = toShow.Company
+  - let watchsize = toShow.Price
+  div
+    div.row
+      div(class='costumeAttr mr-3') Watch ID is:
+      div #{watchid}
+    div.row
+      div(class='costumeAttr mr-3') Watch Type is:
+      div #{watchtype}
+    div.row
+      div(class='costumeAttr mr-3') Watch cost is:
+      div #{watchcost}
+    div.row
+      div(class='costumeAttr mr-3') Watch Size is:
+      div #{watchsize}
