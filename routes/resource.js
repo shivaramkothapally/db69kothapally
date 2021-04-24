@@ -18,11 +18,21 @@ router.get('/watch/:id', watch_controller.watch_detail);
 // GET request for list of all Costume items.
 router.get('/watch', watch_controller.watch_list);
 /* GET detail costume page */
+// A little function to check if we have an authorized user and continue on
+//or
+// redirect to login.
+const secured = (req, res, next) => {
+if (req.user){
+return next();
+}
+req.session.returnTo = req.originalUrl;
+res.redirect("/login");
+}
 router.get('/detail', watch_controller.watch_view_one_Page);
 /* GET create costume page */
-router.get('/create', watch_controller.watch_create_Page);
+router.get('/create',  secured, watch_controller.watch_create_Page);
 /* GET create update page */
-router.get('/update', watch_controller.watch_update_Page);
+router.get('/update', secured, watch_controller.watch_update_Page);
 /* GET create costume page */
-router.get('/delete', watch_controller.watch_delete_Page);
+router.get('/delete',  secured, watch_controller.watch_delete_Page);
 module.exports = router;

@@ -35,7 +35,7 @@ exports.watch_create_post = async function(req, res) {
         let result = await document.save();
         res.send(result);
     } catch (err) {
-        res.error(500, `{"error": ${err}}`);
+        res.send(500, `{"error": ${err}}`);
     }
 };
 // Handle Costume delete form on DELETE.
@@ -61,7 +61,13 @@ exports.watch_view_one_Page = async function(req, res) {
     }
     catch(err){
         res.status(500)
-        res.send(`{'error': '${err}'}`);
+        let r = 'CastError: Cast to ObjectId failed for value "' + req.query.id + '" at path "_id" for model "Watch"'
+        if (err = r) {
+            console.log("Id not found")
+            res.send(`Id not found`);
+        } else {
+            res.send(`{'error': '${err}'}`);
+        }
     }
 };
 
@@ -101,7 +107,12 @@ exports.watch_delete_Page = async function(req, res) {
     }
     catch(err){
         res.status(500)
-        res.send(`{'error': '${err}'}`);
+        if (err = 'CastError: Cast to ObjectId failed for value "123131" at path "_id" for model "Watch"') {
+            console.log("Id not found")
+            res.send(`Id not found`);
+        } else {
+            res.send(`{'error': '${err}'}`);
+        }
     }
 };
 
